@@ -1,4 +1,4 @@
-from algoritmos import bfs, ucs, astar
+from algoritmos import bfs, ucs, astar, greedy
 from utils.grafo_utils import cargar_grafo
 from utils.visualizacion import dibujar_grafo_con_camino
 
@@ -30,10 +30,12 @@ def main():
         print(f"\n--- Buscando ruta a emergencia en {meta} ---")
 
         camino_bfs = bfs.buscar(grafo, inicio, meta)  # TODO: implementar
+        camino_greedy = greedy.buscar(grafo, inicio, meta, posiciones)  # TODO: implementar
         camino_ucs = ucs.buscar(grafo, inicio, meta)  # TODO: implementar
         camino_astar = astar.buscar(grafo, inicio, meta, posiciones)  # TODO: implementar
 
         print(f"BFS: {camino_bfs}")
+        print(f"Greedy: {camino_greedy}")
         print(f"UCS: {camino_ucs}")
         print(f"A*: {camino_astar}")
 
@@ -42,6 +44,10 @@ def main():
             dibujar_grafo_con_camino(grafo, posiciones, camino_bfs, inicio, meta, algoritmo="BFS")
         else:
             print("No se encontró un camino con BFS.")
+        if camino_greedy:
+            dibujar_grafo_con_camino(grafo, posiciones, camino_greedy, inicio, meta, algoritmo="Greedy")
+        else:
+            print("No se encontró un camino con Greedy.")
         if camino_ucs:
             dibujar_grafo_con_camino(grafo, posiciones, camino_ucs, inicio, meta, algoritmo="UCS")
         else:
